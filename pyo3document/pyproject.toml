@@ -16,5 +16,11 @@ tests = [
     "pytest",
 ]
 [tool.maturin]
+manifest-path = "rust/pybindings/Cargo.toml"
+module-name = "pyo3document"
+
 python-source = "python"
 features = ["pyo3/extension-module"]
+bindings = "pyo3"
+
+strip = true
