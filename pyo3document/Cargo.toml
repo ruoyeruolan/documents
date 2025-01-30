@@ -16,4 +16,4 @@ memebers = [
     "rust/*",
 ]
 resolver = "2"
-members = ["rust/pybindings"]
+members = [ "rust/chapter2","rust/pybindings"]
