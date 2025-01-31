@@ -16,3 +16,46 @@ fn double(s: usize) -> uszie {
 fn my_extension(m: &Bound<'_, PyModule>) -> Pyresult<()> {
     m.add_function(wrap_pyfunction!(double, m)?)
 }
+
+#[pymodule]
+fn parent_module(m: &Bound<'_, PyModule>) -> Pyresult<()> {
+    register_child_module(m)?;
+    Ok(())
+}
+
+fn register_child_module(parent: &Bound<'_, PyModule>) -> Pyresult<()> {
+    let child_module = PyModule::new(parent.py(), "child_module")?;
+    child_module.add_function(wrap_pyfunction!(func, &child_module)?)?;
+    parent.add_submodule(&child_module)?;
+}
+
+#[pyfunction]
+fn func() -> String {
+    "func".to_string()
+}
+
+#[pymodule]
+mod my_extension {
+    use super::*;
+
+    #[pymodule_export]
+    use super::double;
+
+    #[pyfunction]
+    fn triple(s: usize) -> usize {
+        x * 3
+    }
+
+    #[pyclass]
+    struct Unit;
+
+    #[pymodule]
+    mod submodule {
+        unimplemented!();
+    }
+
+    #[pymodule_init]
+    fn init(m: Bound<'_, PyModule>) -> Pyresult<()> {
+        m.add("double2", m.getattr("double")?)
+    }
+}
