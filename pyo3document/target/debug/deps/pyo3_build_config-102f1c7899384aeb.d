@@ -1,0 +1,14 @@
+/Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/deps/libpyo3_build_config-102f1c7899384aeb.rmeta: /Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/lib.rs /Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/errors.rs /Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/impl_.rs /Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/build/pyo3-build-config-b83acad8a8ebe1eb/out/pyo3-build-config-file.txt /Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/build/pyo3-build-config-b83acad8a8ebe1eb/out/pyo3-build-config.txt
+
+/Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/deps/libpyo3_build_config-102f1c7899384aeb.rlib: /Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/lib.rs /Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/errors.rs /Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/impl_.rs /Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/build/pyo3-build-config-b83acad8a8ebe1eb/out/pyo3-build-config-file.txt /Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/build/pyo3-build-config-b83acad8a8ebe1eb/out/pyo3-build-config.txt
+
+/Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/deps/pyo3_build_config-102f1c7899384aeb.d: /Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/lib.rs /Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/errors.rs /Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/impl_.rs /Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/build/pyo3-build-config-b83acad8a8ebe1eb/out/pyo3-build-config-file.txt /Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/build/pyo3-build-config-b83acad8a8ebe1eb/out/pyo3-build-config.txt
+
+/Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/lib.rs:
+/Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/errors.rs:
+/Users/wakala/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pyo3-build-config-0.23.4/src/impl_.rs:
+/Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/build/pyo3-build-config-b83acad8a8ebe1eb/out/pyo3-build-config-file.txt:
+/Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/build/pyo3-build-config-b83acad8a8ebe1eb/out/pyo3-build-config.txt:
+
+# env-dep:CARGO_PKG_VERSION=0.23.4
+# env-dep:OUT_DIR=/Users/wakala/IdeaProjects/Projects/documents/pyo3document/target/debug/build/pyo3-build-config-b83acad8a8ebe1eb/out
