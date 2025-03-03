@@ -8,12 +8,13 @@
 @Description: 
 """
 
-from ast import List
+
 import torch
 import numpy as np
 import pandas as pd
 
 import networkx as nx
+import plotly.express as px
 import torch_geometric.transforms as T
 
 from typing import Tuple
@@ -22,6 +23,8 @@ from torch import Tensor
 from torch_geometric.data import Data
 from torch_geometric.utils import degree
 
+from sklearn.manifold import TSNE
+from sklearn.decomposition import PCA
 
 
 # _cached_data_: pd.DataFrame | None = None
@@ -133,3 +136,65 @@ def data_preparation(data: Data, num_features: int = 20, device: str = 'cpu') ->
     return train_data, val_data, test_data
 
 
+def get_mapping():
+    data_path = "./DG-AssocMiner_miner-disease-gene.tsv"
+    df = pd.read_csv(data_path, index_col="Disease Name", sep="\t")
+    disease_mapping = [index_id for index_id in enumerate(df.index.unique())]
+    df = pd.read_csv(data_path, index_col="Gene ID", sep="\t")
+    gene_mapping = [index_id[1] for index_id in enumerate(df.index.unique())]
+    mapping = disease_mapping + gene_mapping
+    return mapping
+
+def visualize_tsne_embeddings(
+        model, 
+        data, 
+        title, 
+        perplexity=30.0, 
+        labeled=False, 
+        labels=[]
+):
+    """Visualizes node embeddings in 2D space with t-SNE.
+
+    Args: model, pass in the trained or untrained model
+            data, Data object, where we assume the first 519 datapoints are disease
+            nodes and the rest are gene nodes
+            title, title of the plot
+            perplexity, t-SNE hyperparameter for perplexity
+    """
+    model.eval()
+    x = data.x
+    z = model.encode(x, data.edge_index)
+    ax1, ax2 = zip(*TSNE(n_components=2, learning_rate='auto', perplexity=perplexity,
+                        init='random').fit_transform(z.detach().cpu().numpy()))
+
+    fig = px.scatter(x=ax1, y=ax2, color=['r']*519 + ['g']*7294,
+                    hover_data=[get_mapping()],
+                    title=title)
+
+    if labeled:
+        for i in labels:
+            fig.add_annotation(x=ax1[i], y=ax2[i], text=str(i), showarrow=False)
+    fig.show()
+
+def visualize_pca_embeddings(model, data, title, labeled=False, labels=[]):
+    """Visualizes node embeddings in 2D space with PCA (components=2)
+
+    Args: model, pass in the trained or untrained model
+            data, Data object, where we assume the first 519 datapoints are disease
+            nodes and the rest are gene nodes
+            title, title of the plot
+    """
+    
+    model.eval()
+    x = data.x
+    z = model.encode(x, data.edge_index)
+
+    pca = PCA(n_components=2)
+    components = pca.fit_transform(z.detach().cpu().numpy())
+    fig = px.scatter(components, x=0, y=1, color=['r']*519 + ['g']*7294,
+                    hover_data=[get_mapping()], title=title)
+
+    if labeled:
+        for i in labels:
+            fig.add_annotation(x=components[:,0][i], y=components[:,1][i], text=str(i), showarrow=False)
+    fig.show()
