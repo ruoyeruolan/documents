@@ -1,3 +1,11 @@
 {
-    "python.analysis.typeCheckingMode": "basic"
+    "C_Cpp.errorSquiggles": "enabled",
+    "files.associations": {
+        "*.sqlbook": "sql",
+        "*.ndjson": "jsonl",
+        "*.dbclient-js": "javascript",
+        "*.rmd": "markdown",
+        "*.py": "python",
+        "iostream": "cpp"
+    }
 }
