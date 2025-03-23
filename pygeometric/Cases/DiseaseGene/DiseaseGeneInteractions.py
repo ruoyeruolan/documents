@@ -18,11 +18,15 @@ import torch.nn as nn
 import networkx as nx
 import plotly.express as px
 import matplotlib.pyplot as plt
-import torch_geometric.transforms as T
 
 from typing import Tuple
 
 from torch import Tensor
+from torch.optim.optimizer import Optimizer
+from torch.optim import Adam
+from torch import device
+
+import torch_geometric.transforms as T
 from torch_geometric.data import Data
 from torch_geometric.utils import degree
 
@@ -341,5 +345,56 @@ class GCNEncoder(nn.Module):
         x = self.dropout(x)
         return self.conv2(x, edge_index)
 
-gae = GAE(encoder=GCNEncoder()).to(device='cpu')
 
+def train(train_data: Data, model: nn.Module, optimizer: Optimizer, device: str | device = 'cpu'):
+
+    model.train()
+    optimizer.zero_grad()
+
+    z = model.encode(train_data.x, train_data.edge_index)
+    loss = model.recon_loss(z=z, pos_edge_index=train_data.pos_edge_index.to(device))
+
+    loss.backward(retain_graph=True)
+    optimizer.step()
+    return float(loss)
+
+@torch.no_grad()
+def test_(test_data: Data, model:nn.Module):
+
+    model.eval()
+    z = model.encode(test_data.x, test_data.edge_index)
+    return model.test(z=z, pos_edge_index=test_data.pos_edge_index, neg_edge_index=test_data.neg_edge_index)
+
+def main():
+
+    losses = []
+    test_auc = []
+    test_ap = []
+    train_aucs = []
+    train_aps = []
+
+    data, dz_mapping, gene_mapping = initialize_data()
+    train_data, val_data, test_data = data_preparation(data)
+
+    model = GAE(encoder=GCNEncoder()).to(device='cpu')
+    optimizer = Adam(model.parameters(), lr=0.01)
+
+    for epoch in range(1, 51):
+
+        loss = train(train_data, model, optimizer)
+        losses.append(loss)
+
+        auc, ap = test_(test_data, model)
+        test_auc.append(auc)
+        test_ap.append(ap)
+
+        train_auc, train_ap = test_(train_data, model)
+
+        train_aucs.append(train_auc)
+        train_aps.append(train_ap)
+
+        print('Epoch: {:03d}, test AUC: {:.4f}, test AP: {:.4f}, train AUC: {:.4f}, train AP: {:.4f}, loss:{:.4f}'.format(epoch, auc, ap, train_auc, train_ap, loss))
+
+if __name__ == '__main__':
+
+    main()

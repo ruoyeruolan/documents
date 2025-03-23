@@ -25,10 +25,11 @@ from torch_geometric.nn import GPSConv, GINEConv, global_add_pool
 
 def load_dataset(path: str | None = None):
     if path is None:
-        path = '/public/workspace/ryrl/data/pygeometrics/zinc'
+        # path = '/public/workspace/ryrl/data/pygeometrics/zinc'
+        path = '.'
 
     transform = T.AddRandomWalkPE(walk_length=20, attr_name='pe')
-    train_dataset = ZINC(root=path, subset=False, split='train', pre_transform=transform)
+    train_dataset = ZINC(root=path, subset=False, split='train', pre_transform=transform)  # List[Data]
     val_dataset = ZINC(root=path, subset=False, split='val', pre_transform=transform)
     test_dataset = ZINC(root=path, subset=False, split='test', pre_transform=transform)
 
@@ -120,7 +121,7 @@ def train(model: GPS, train_loader, optimizer: torch.optim.Optimizer, device):
         data = data.to(device)
         optimizer.zero_grad()
         model.redraw_projection.redraw_projections()
-        out =model(data.x, data.pe, data.edge_index, data.edge_attr, data.batch)
+        out = model(data.x, data.pe, data.edge_index, data.edge_attr, data.batch)
 
         loss = (out.squeeze() - data.y).abs().mean()
         loss.backward()

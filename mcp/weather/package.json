@@ -1,0 +1,29 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "",
+  "main": "weather-sever.js",
+  "scripts": {
+    "start": "node weather-sever.js",
+    "dev": "nodemon weather-sever.js"
+  },
+  "keywords": [
+    "mcp",
+    "weather",
+    "ai",
+    "claude",
+    "cline",
+    "meizu"
+  ],
+  "author": "ruoyeruolan",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.7.0",
+    "node-fetch": "3.3.2",
+    "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.9"
+  }
+}
