@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "weather": {
+            "command": "uv",
+            "args": [
+                "--directory",
+                "/Users/wakala/IdeaProjects/Projects/documents/mcp/tutorials/weather",
+                "run",
+                "weather.py"
+            ]
+        }
+    }
+}

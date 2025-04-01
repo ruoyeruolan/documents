@@ -27,7 +27,6 @@ def load_dataset(path: str | None = None):
     if path is None:
         # path = '/public/workspace/ryrl/data/pygeometrics/zinc'
         path = '.'
-
     transform = T.AddRandomWalkPE(walk_length=20, attr_name='pe')
     train_dataset = ZINC(root=path, subset=False, split='train', pre_transform=transform)  # List[Data]
     val_dataset = ZINC(root=path, subset=False, split='val', pre_transform=transform)
