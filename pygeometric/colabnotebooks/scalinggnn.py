@@ -93,7 +93,7 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = Adam(model.parameters(), lr=.01, weight_decay=5e-4)
 
-    for epoch in range(1, 51):
+    for epoch in range(1, 101):
         train(model, train_loader, criterion, optimizer)
         train_acc, val_acc, test_acc = test(model, data)
         print(f'Epoch: {epoch:03d}, Train: {train_acc:.4f}, Val Acc: {val_acc:.4f}, Test Acc: {test_acc:.4f}')
