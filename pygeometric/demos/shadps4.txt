@@ -1,0 +1,37 @@
+啰嗦几句：
+本视频只专注windows系统且ShadPS4的qt版本，暂不讨论其他平台或者版本，这也是主流选择
+视频更多是给大家一些模拟器与游戏配置的思路，虽然资料提供网盘下载，但不保活，并且不是懒人整合包方式，需要有动手和思考。
+当前ShadPS4虽然能比较流畅运行和游玩血源，但也是有很多bug，需要理解和给与模拟器开发人员时间去修复，所以个人的建议：
+1、时刻保证模拟机是最新版本，因为作者更新是最官方的，最为有效直接
+2、尽可能减少mod与作弊器使用，保证简单化，这样容易避免很多问题
+3、不用去追求高画质，高帧率（目标60fps），这款游戏在这方面提升不高，换来的可能是不稳定
+
+1、ShadPS4安装与配置
+安全之前检查删除：C:\Users\xxxxx\AppData\Roaming\shadPS4
+N站下载：https://www.nexusmods.com/bloodborne/mods/291?tab=files&file_id=1626
+版本：0.7.1
+新版本下载：https://github.com/shadps4-emu/shadPS4
+软件网盘下载： https://pan.baidu.com/s/1L5WGhV33xbvbo6JWQTUfPw?pwd=iufc 提取码: iufc 
+先安装0.7.1，因为版权原因，之后版本不能安装pkg游戏，待安装完游戏后直接升级到最新版或者用最新版覆盖即可
+
+2、游戏安装与配置
+下载插件
+
+3、游戏优化
+四个目标：
+支持60fps
+Intel 12th CPU出现受击模拟器崩溃
+画面卡顿
+声音修复
+https://www.nexusmods.com/bloodborne/mods/165 Sound Crash Fix Workaround for ANY BUILD
+
+Skip Intro（跳过片头）
+Intel 12th Gen + SFX Fix（修复12代cpu出现受击模拟器崩溃）
+60FPS（支持60帧）
+Disable vsync（关闭垂直同步，还需要在显卡配置关闭）
+
+Disable chromatic aberration（下面三个修复画面卡顿）
+Disable Motion Blur
+TaskSplit Path (Performance Increase)
+
+PS：很久没做视频，录音质量不行，多包涵！有问题勿发私信，评论区留言讨论，相互学习，这样大家都能看到并互相帮助
